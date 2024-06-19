@@ -11,31 +11,31 @@ namespace projCharacter
     {
         public string nameCharacter;
         public float lifePoints;
-        public float lifeDef;
-        public float lifeAttak;
+        public float defPoints;
+        public float attakPoints;
         public Character()
         {
             nameCharacter = "Toto";
-            lifeAttak = 50;
-            lifeDef = 20;
+            attakPoints = 50;
+            defPoints = 20;
             lifePoints = 70;
 
         }
 
-        public Character(string _nameCharacter, string _lifeDef, string _lifeAttak, string _lifePoints)
+        public Character(string _nameCharacter, string _defPoints, string _attakPoints, string _lifePoints)
         {
             nameCharacter = _nameCharacter;
-            lifeDef = float.Parse(_lifeDef);
-            lifeAttak = float.Parse(_lifeAttak);
+            defPoints = float.Parse(_defPoints);
+            attakPoints = float.Parse(_attakPoints);
             lifePoints = float.Parse(_lifePoints);
         }
         public void Attaque( Character j2)
         {
-            if (this.lifeAttak > j2.lifeDef)
+            if (this.attakPoints > j2.defPoints)
             {
-                Console.WriteLine("Le " + nameCharacter + " attaque le " + j2.nameCharacter);
-                j2.lifePoints = j2.lifePoints - (lifeAttak - j2.lifeDef);
-                Console.WriteLine("Le joureur " + nameCharacter + " a pour nombre de points de vie : " + lifePoints);
+                Console.WriteLine(nameCharacter + " attaque " + j2.nameCharacter);
+                j2.lifePoints = j2.lifePoints - (attakPoints - j2.defPoints);
+                Console.WriteLine(nameCharacter + " a pour nombre de points de vie : " + lifePoints);
             }
             else
             {
@@ -46,7 +46,7 @@ namespace projCharacter
         public void Combat(Character j2)
         {
             bool booleen = false;
-            
+            //Condition pour savoir si une attaque se déroule correctement
             while (lifePoints > 0 && j2.lifePoints > 0)
             {
                 if (booleen == false)
@@ -62,19 +62,20 @@ namespace projCharacter
 
                 }
             }
+            //Condition de victoire, défaite et egalité
             if (this.lifePoints < 0 && j2.lifePoints >= 0)
             {
-                Console.WriteLine("Le joueur " + j2.nameCharacter + "qui a gagné avec ce score: " + j2.lifePoints);
+                Console.WriteLine(j2.nameCharacter + " qui gagne avec le nombre de points de vie : " + j2.lifePoints);
 
             }
             else if (j2.lifePoints < 0 && this.lifePoints >= 0)
             {
-                Console.WriteLine("Le joueur " + this.nameCharacter + " a gagné avec ce score : " + this.lifePoints);
+                Console.WriteLine( this.nameCharacter + " qui gagne avec le nombre de points de vie: " + this.lifePoints);
 
             }
             else
             {
-                Console.WriteLine("Vous avez fini égalité");
+                Console.WriteLine("Vous avez fini par une égalité");
 
             }
         }
